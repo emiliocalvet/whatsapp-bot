@@ -6,15 +6,11 @@ RUN apt install -y gconf-service libgbm-dev libasound2 libatk1.0-0 libc6 libcair
 RUN apt install -y chromium
 
 # For transcription
-RUN apt install -y ffmpeg
-## It will install latest model of OpenAI Whisper (around 6~7 GB)
-## Uncomment below command if you want to use the local version of transcription module
-# RUN pip install -y python pip
-# RUN pip install -U openai-whisper
+RUN pip install -y python pip
+RUN pip install -U openai-whisper
 
 WORKDIR /app/
 
-ENV OPENAI_API_KEY ""
 ENV PREFIX_ENABLED ""
 
 COPY package.json package-lock.json ./

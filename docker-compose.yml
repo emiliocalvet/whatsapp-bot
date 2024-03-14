@@ -1,14 +1,9 @@
 version: "3"
 services:
-    whatsapp-chatgpt:
-        container_name: whatsapp-chatgpt
+    whatsapp-bot:
+        container_name: whatsapp-bot
         read_only: true
-        image: ghcr.io/askrella/whatsapp-chatgpt:master
-        environment:
-            OPENAI_API_KEY: ""
-            OPENAI_GPT_MODEL: ""
-            PREFIX_ENABLED: ""
-            SERPAPI_API_KEY: ""
+        image: ghcr.io/emiliocalvet/whatsapp-bot:refactor
         restart: unless-stopped
         volumes:
             - session-data:/app/session

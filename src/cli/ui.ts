@@ -10,9 +10,9 @@ export const printError = (text: string) => {
 
 export const printIntro = () => {
 	console.log("");
-	console.log(color.bgCyan(color.white(" Whatsapp ChatGPT & DALL-E ")));
+	console.log(color.bgCyan(color.white(" Whatsapp AI Bot ")));
 	console.log("|-------------------------------------------------------------------------------------------------|");
-	console.log("| A Whatsapp bot that uses OpenAI's ChatGPT and DALL-E to generate text and images from a prompt. |");
+	console.log("|    Bot for WhatsApp that intercepts messages and generates intelligent responses based on AI    |");
 	console.log("|-------------------------------------------------------------------------------------------------|");
 	console.log("");
 };
@@ -34,9 +34,9 @@ export const printAuthenticationFailure = () => {
 	console.log("Authentication failed!");
 };
 
-export const printOutro = () => {
+export const printInstructions = () => {
 	console.log("");
 	console.log("The bot is ready to use.");
 	console.log("To get started, send a message to the bot with the prompt you want to use.");
-	console.log("Use the prefix '!gpt' if configured that way.");
+	console.log("Use the prefix '!ia' if configured that way.");
 };

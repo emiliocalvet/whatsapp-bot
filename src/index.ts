@@ -1,16 +1,10 @@
 import qrcode from "qrcode";
 import { Client, Message, Events, LocalAuth } from "whatsapp-web.js";
-
-// Constants
 import constants from "./constants";
 
 // CLI
 import * as cli from "./cli/ui";
 import { handleIncomingMessage } from "./handlers/message";
-
-// Config
-import { initAiConfig } from "./handlers/ai-config";
-import { initOpenAI } from "./providers/openai";
 
 // Ready timestamp of the bot
 let botReadyTimestamp: Date | null = null;
@@ -66,14 +60,11 @@ const start = async () => {
 
 	// WhatsApp ready
 	client.on(Events.READY, () => {
-		// Print outro
-		cli.printOutro();
+		// Print instructions
+		cli.printInstructions();
 
 		// Set bot ready timestamp
 		botReadyTimestamp = new Date();
-
-		initAiConfig();
-		initOpenAI();
 	});
 
 	// WhatsApp message

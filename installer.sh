@@ -40,14 +40,8 @@ esac
 
 # Clone Git repo and run Docker Compose
 echo "Cloning Git repo..."
-git clone https://github.com/askrella/whatsapp-chatgpt.git
+git clone https://github.com/emiliocalvet/whatsapp-bot.git
 cd repo
-
-# Prompt user for API key
-read -p "Enter your OpenAI API key: " api_key
-
-# Replace API key variable in Docker Compose file
-sed -i "s/OPENAI_API_KEY:.*/OPENAI_API_KEY: \"$api_key\"/g" docker-compose.yml
 
 # Start Docker Compose
 echo "Starting Docker containers..."
