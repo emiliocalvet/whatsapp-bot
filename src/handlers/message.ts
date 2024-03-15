@@ -1,4 +1,5 @@
 import { Message } from "whatsapp-web.js";
+import { startsWithIgnoreCase } from "../utils";
 
 // Config & Constants
 import config from "../config";
@@ -18,8 +19,6 @@ import { botReadyTimestamp } from "../index";
 
 // Handles message
 async function handleIncomingMessage(message: Message) {
-	console.log("Received message: " + message.body);
-
 	let messageString = message.body;
 
 	// Prevent handling old messages
@@ -83,6 +82,12 @@ async function handleIncomingMessage(message: Message) {
 
 		// Handle message AI
 		await handleMessageAI(message, transcribedText);
+		return;
+	}
+
+	if (startsWithIgnoreCase(messageString, config.aiPrefix)) {
+		const prompt = messageString.substring(config.aiPrefix.length + 1);
+		await handleMessageAI(message, prompt);
 		return;
 	}
 }

@@ -6,11 +6,16 @@ const handleMessageAI = async (message: Message, prompt: string) => {
 		cli.print(`[AI] Received prompt from ${message.from}: ${prompt}`);
 
 		const start = Date.now();
-
-		// Check if we have a conversation with the user
-		let response: {answer: string} = { answer: "Hello! How can I help you today?" };
 		
-		//TODO: Send prompt to AI.
+		const res = await fetch(`https://da69-2804-29b8-50f0-110f-1568-ec8a-9d83-6fce.ngrok-free.app/questions/${prompt}`, {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+			// body: JSON.stringify({ prompt })
+		});
+
+		cli.print(`[AI] Response from model: ${res.json()}`);
+		
+		let response: {answer: string} = await res.json();
 
 		const end = Date.now() - start;
 
