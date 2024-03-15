@@ -1,5 +1,6 @@
 import { Message } from "whatsapp-web.js";
 import * as cli from "../cli/ui";
+import config from "../config";
 
 const handleMessageAI = async (message: Message, prompt: string) => {
 	try {
@@ -7,20 +8,18 @@ const handleMessageAI = async (message: Message, prompt: string) => {
 
 		const start = Date.now();
 		
-		const res = await fetch(`https://da69-2804-29b8-50f0-110f-1568-ec8a-9d83-6fce.ngrok-free.app/questions/${prompt}`, {
+		const res = await fetch(`${config.aiUrl}/questions/${prompt}`, {
 			method: "GET",
 			headers: { "Content-Type": "application/json" },
 			// body: JSON.stringify({ prompt })
 		});
 
-		cli.print(`[AI] Response from model: ${res.json()}`);
-		
-		let response: {answer: string} = await res.json();
+		const response:string = await res.text();
 
 		const end = Date.now() - start;
 
-		cli.print(`[AI] Answer to ${message.from}: ${response.answer}  | AI request took ${end}ms)`);
-		message.reply(response.answer);
+		cli.print(`[AI] Answer to ${message.from}: ${response}  | AI request took ${end}ms)`);
+		message.reply(response);
 	} catch (error: any) {
 		console.error("An error occured", error);
 		message.reply("An error occured, please contact the administrator. (" + error.message + ")");

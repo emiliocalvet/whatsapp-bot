@@ -15,6 +15,9 @@ interface IConfig {
 
 	// Voice transcription & Text-to-Speech
 	transcriptionEnabled: boolean;
+
+	//AI URL
+	aiUrl: string;
 }
 
 // Config
@@ -29,6 +32,9 @@ export const config: IConfig = {
 
 	// Transcription
 	transcriptionEnabled: getEnvBooleanWithDefault("TRANSCRIPTION_ENABLED", false), // Default: false
+
+	//AI URL
+	aiUrl: process.env.AI_URL || "",
 };
 
 /**
